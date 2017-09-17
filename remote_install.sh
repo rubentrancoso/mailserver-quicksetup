@@ -109,8 +109,8 @@ docker run -it --rm \
     certonly --standalone \
     --rsa-key-size 4096 \
     --agree-tos \
-    -m "$postix_admin_email@$postix_admin_domain" \
-    -d "$mail_server_host.$postix_admin_domain" 
+    -m "$postfix_admin_email@$postfix_admin_domain" \
+    -d "$mail_server_host.$postfix_admin_domain" 
 commandseparator
 
 docker-compose up -d
@@ -118,7 +118,7 @@ commandseparator
 
 # copiar o DKIM para o DNS
 
-cat "/mnt/docker/main/dkim/$mail_server_host.$postix_admin_domain/plublic.key" > DKIM.record 
+cat "/mnt/docker/main/dkim/$mail_server_host.$postfix_admin_domain/plublic.key" > DKIM.record 
 commandseparator
 
 rm -rf PARAMETERS
