@@ -1,6 +1,6 @@
 # mailserver-quicksetup
 
-A script to automate all steps neded to intall https://github.com/hardware/mailserver on a digitalocean droplet
+A script to automate all steps neded to install https://github.com/hardware/mailserver on a digitalocean droplet
 
 At the momment it just not cover some few steps that I will be working with
 
