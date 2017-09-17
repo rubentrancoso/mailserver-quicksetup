@@ -1,0 +1,190 @@
+#!/bin/bash -x
+
+rm -rf install.log
+
+digitalocean_token="define in PARAMETERS"
+digitalocen_droplet_tag="define in PARAMETERS"
+
+. PARAMETERS
+
+log(){
+   echo -e "$1" >&2
+}
+
+# return true or false accorfing that jq is installed or not
+isjqinstalled(){
+   log "verifying if jq is installed..."
+   if type jq >/dev/null 2>&1;
+   then
+      log "jq already installed."
+      echo 0
+   else
+      log "jq installation not found."
+      echo 1
+   fi
+}
+
+installjq(){
+   # 0 - sucess / 1 - error (not found)
+   if [ $(isjqinstalled) = 1 ]
+   then
+      log "installing jq..."
+      brew install jq
+   fi
+}
+
+getresty(){
+   log "getting resty..."
+   curl -sL https://raw.githubusercontent.com/micha/resty/master/resty > resty
+   . resty
+}
+
+getvmidfromtag(){
+   tag=$1
+   log "looking for vm with tag \"$tag\"..."
+   result=`curl -sX GET -H "Content-Type: application/json" -H "Authorization: Bearer $digitalocean_token" "https://api.digitalocean.com/v2/droplets?tag_name=$tag"`
+   result=`echo -e "$result" | jq '.droplets[] | .id'`
+   echo $result
+}
+
+rebuildimage(){
+   log "going to rebuild $1"
+   vmid="$1"
+   result=`curl -sX POST -H "Content-Type: application/json" -H "Authorization: Bearer $digitalocean_token" -d '{"type":"rebuild","image":"debian-9-x64"}' "https://api.digitalocean.com/v2/droplets/$vmid/actions"`
+
+}
+
+removequotesfromstr(){
+   value=$1
+   temp="${value%\"}"
+   temp="${temp#\"}"
+   echo "$temp"
+}
+
+getvmipaddressfromid(){
+   log "get ip_address from vm $1..."
+   vmid="$1"
+   result=`curl -sX GET -H "Content-Type: application/json" -H "Authorization: Bearer $digitalocean_token" "https://api.digitalocean.com/v2/droplets/$vmid"`
+   result=`echo -e "$result" | jq '.droplet.networks.v4[] | .ip_address'`
+   echo `removequotesfromstr "$result"`
+}
+
+waitmachinetobeready(){
+   log "waiting machine to finish rebuild..."
+   vmid="$1"
+   sleep 10
+   while :
+   do
+      result=`curl -sX GET -H "Content-Type: application/json" -H "Authorization: Bearer $digitalocean_token" "https://api.digitalocean.com/v2/droplets/$vmid"`
+      result=`echo -e "$result" | jq '.droplet.status'`
+      if [ "$result" = "off" ];
+      then
+         echo "-"
+      else
+         break
+      fi     
+      sleep 5
+   done
+}
+
+renamedroplet() {
+   vm_id=$1
+   new_name=$2
+
+   echo -e "\"$new_name\""
+
+   log "changing droplet name to \"$new_name\"" 
+   curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $digitalocean_token" -d '{"type":"rename","name":"'$new_name'"}' "https://api.digitalocean.com/v2/droplets/$vm_id/actions"
+}
+
+waitforssh(){
+   log "waiting for ssh..."
+   ip=$1
+
+
+   while :
+   do
+      if [[ $(nc -w 5 "$ip" 22 <<< "\0" ) =~ "OpenSSH" ]] ; then
+         result="open ssh is running"
+      fi
+      if [ "$result" = "open ssh is running" ];
+      then
+         return
+      fi     
+      sleep 5
+   done
+}
+
+removemachinefromknownhosts(){
+   log "remove machine from known hosts..."
+   ip_address=`removequotesfromstr "$ip_address"`
+   log `pwd`
+   ssh-keygen -R "$ip_address"
+   # sed -i '' '^$ip_address/d' ~/.ssh/known_hosts
+   echo "~/.ssh/known_hosts"
+   cat ~/.ssh/known_hosts
+   echo "----------------"
+}
+
+fixssh(){
+   eval "$(ssh-agent)"
+   ssh-add -K ~/.ssh/id_smtp
+}
+
+#####################################
+
+
+# install jq to parse json responses
+installjq
+# install resty to make rest calls from bash
+getresty
+
+# given a tag get the vm_id from digital ocean
+vm_id=`getvmidfromtag "$digitalocen_droplet_tag"`
+
+# if vm was not found exit
+if [ -z "$vm_id" ];
+then
+   log "no vm found"
+   exit 1
+else
+   log "found vm $vm_id"
+fi
+
+# give the machine the new name 
+renamedroplet "$vm_id" "$mail_server_name"
+
+# 'format and reinstall' image to the vm
+rebuildimage "$vm_id"
+
+# wait machine to be rebuilt and be available
+# the problem here is that even if the machine is available
+# that does mean that it`s already acessible
+# so we check for the machine every 5 seconds
+waitmachinetobeready "$vm_id"
+
+# ask for the ip address so we can access the machine using ssh
+ip_address=`getvmipaddressfromid "$vm_id"`
+
+# delete the machine from knowhosts so we can add the new finger print for the newly 
+# created vm
+removemachinefromknownhosts "$ip_address"
+
+# wait until port 22 answer with ssh handshake
+waitforssh "$ip_address" 
+
+# copy installation files to the remote host
+
+# the docker-compose file
+log "copying docker-compose to remote host..."
+result=`scp -o "StrictHostKeyChecking no" -i ~/.ssh/id_smtp docker-compose.yml root@$ip_address:~/docker-compose.yml.tpl`
+# copy the installation script
+log "copying remote_install.sh to remote host..."
+result=`scp -o "StrictHostKeyChecking no" -i ~/.ssh/id_smtp remote_install.sh root@$ip_address:~/remote_install.sh`
+# make the installation script runnable
+result=`ssh -i ~/.ssh/id_smtp root@$ip_address chmod +x /root/remote_install.sh`
+# copy PARAMETERS file to the remote host
+log "copying PARAMETERS file to remote host..."
+result=`scp -o "StrictHostKeyChecking no" -i ~/.ssh/id_smtp PARAMETERS root@$ip_address:~/PARAMETERS`
+
+
