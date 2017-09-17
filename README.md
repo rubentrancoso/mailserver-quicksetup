@@ -24,7 +24,7 @@ After doing a first install you will see how easy it is.
 
 ## Missing steps
 
-1. xataz/docker-letsencrypt image needs to be changed so the certificate creation will not prompt for user
+1. xataz/docker-letsencrypt image needs to be changed so the certificate creation will not prompt for user input
 2. automatically setup cloudflare records
 
    - A mail ip address
