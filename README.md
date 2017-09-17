@@ -2,6 +2,8 @@
 
 a script to automate all steps neded to intall https://github.com/hardware/mailserver on a digitalocean droplet
 
+at the momment it just not cover some few steps that I will be working with
+
 ## How to use it
 
 - have a private key in your ~/.ssh/ folder. e.g. id_smtp
@@ -15,7 +17,7 @@ a script to automate all steps neded to intall https://github.com/hardware/mails
 
 - do a ssh on the remote host
 - ./remote_install.sh
-
+- configure postfix admin
 - ask digitalocean to open port 25
 
 ## Missing steps
@@ -29,3 +31,4 @@ a script to automate all steps neded to intall https://github.com/hardware/mails
    - TXT v=spf1...
    - TXT mail_domainkey v=DKIM...
    
+3. silently setup postfix admin with password suplied in PARAMETERS (currently you will need to follow a manual step do enter de generated token to the container)
