@@ -4,7 +4,7 @@ services:
   mailserver:
     image: hardware/mailserver:1.1-stable
     container_name: mailserver
-    domainname: ${postix_admin_domain}                  # Mail server A/MX/FQDN & reverse PTR = mail.domain.tld.
+    domainname: ${postfix_admin_domain}                  # Mail server A/MX/FQDN & reverse PTR = mail.domain.tld.
     hostname: mail
     restart: always
     ports:
@@ -39,7 +39,7 @@ services:
   postfixadmin:
     image: hardware/postfixadmin
     container_name: postfixadmin
-    domainname: ${postix_admin_domain}
+    domainname: ${postfix_admin_domain}
     hostname: mail
     restart: always
     environment:
