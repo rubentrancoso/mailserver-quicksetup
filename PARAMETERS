@@ -4,3 +4,4 @@ export postfix_admin_domain=domain.tld
 export postfix_admin_email=admin
 export mail_server_host=mail
 export docker_compose_password=xxxxxxx
+export staging_certs=true
