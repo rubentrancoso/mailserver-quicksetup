@@ -62,7 +62,7 @@ do a ssh on the remote host
 
 - ask digitalocean to open port 25
 
-## Missing steps
+## Missing steps (and TODOs)
 
 1. Automatically setup cloudflare records (or at least give the records as text).
 
@@ -78,3 +78,6 @@ do a ssh on the remote host
 
 4. Is certificate renew already automated?
 
+5. Remove hard coded references of id_smtp from scripts
+
+6. Check why port 80 in not redirecting to ssl on postfixadmin
