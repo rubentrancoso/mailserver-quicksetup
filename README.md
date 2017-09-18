@@ -54,3 +54,5 @@ After doing a first install you will see how easy it is.
 
 4. create a basic droplet with the suplied tag when the droplet tag was not found
 
+5. Fix a version
+
