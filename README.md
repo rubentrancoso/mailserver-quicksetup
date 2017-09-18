@@ -80,4 +80,4 @@ do a ssh on the remote host
 
 5. Remove hard coded references of id_smtp from scripts
 
-6. Check why port 80 in not redirecting to ssl on postfixadmin
+6. Check why port 80 is not redirecting to ssl on postfixadmin
