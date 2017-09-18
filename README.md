@@ -1,4 +1,4 @@
-# Quick setup mailserver in ~10 minutes
+# Quick setup a mailserver in ~10 minutes
 ## [hardware/mailserver](https://github.com/hardware/mailserver) + DigitalOcean + CloudFlare
 
 A script to automate all steps neded to install https://github.com/hardware/mailserver (a simple and full-featured mail server using Docker) on a digitalocean droplet
