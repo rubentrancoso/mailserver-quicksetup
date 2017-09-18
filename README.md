@@ -42,7 +42,7 @@ export additional_domains=aa.tld, www.bb.tld...
 
 ### Installation (10min)
 ```
-# ./install (will create a droplet if it do not exists or rebuild an existing one)
+# ./install (will create a droplet if it does not exists or rebuild an existing one)
 ```
 
 do a ssh on the remote host
