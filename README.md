@@ -15,10 +15,7 @@ At the momment it just do not cover some few steps that I will be working on to 
 
 ### Preparation
 
-- have a private key in your ~/.ssh/ folder. e.g. id_smtp
-- create a droplet on digital ocean using the private key
-- give a tag to this droplet
-
+- have a key pair in your ~/.ssh/ folder. e.g. id_smtp and id_smtp.pub
 - git clone https://github.com/rubentrancoso/mailserver-quicksetup.git
 - cd mailserver-quicksetup
 - change [PARAMETERS](PARAMETERS) file accordingly
@@ -31,12 +28,12 @@ export postfix_admin_email=admin
 export mail_server_host=mail
 export docker_compose_password=123456
 export staging_certs=false
-export private_key=key.pub
+export private_key=id_smtp.pub
 ```
 
 ### Installation (10min)
 
-- ./install
+- ./install (will create a droplet if it do not exists or rebuild an existing one)
 - do a ssh on the remote host
 - ./remote_install.sh
 
