@@ -18,6 +18,10 @@ For this server template, Webmail and Authoritative DNS was removed.
 
 At the momment it just do not cover some few steps that I will be working on to be solved.
 
+### Status from current version
+
+September-18-2017 - All the installation process, except that you need to manually finish postmifadmin setup by entering https://mail.domain.tld/setup.php  
+
 ## How to use it
 
 ### Preparation
