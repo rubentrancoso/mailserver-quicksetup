@@ -107,6 +107,9 @@ docker run -it --rm \
   -p 80:80 -p 443:443 \
   xataz/letsencrypt \
     certonly --standalone \
+    --verbose \
+    --non-interactive \
+    --staging \
     --rsa-key-size 4096 \
     --agree-tos \
     -m "$postfix_admin_email@$postfix_admin_domain" \

@@ -152,7 +152,7 @@ else
 fi
 
 # give the machine the new name 
-renamedroplet "$vm_id" "$mail_server_name"
+renamedroplet "$vm_id" "$mail_server_host.$postfix_admin_domain"
 
 # 'format and reinstall' image to the vm
 rebuildimage "$vm_id"
