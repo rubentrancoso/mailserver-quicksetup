@@ -119,9 +119,28 @@ commandseparator
 docker-compose up -d
 commandseparator
 
-# copiar o DKIM para o DNS
+# DKIM verification
 
-cat "/mnt/docker/mail/dkim/$mail_server_host.$postfix_admin_domain/public.key" > DKIM.record 
+dkim_record_file="/mnt/docker/mail/dkim/$mail_server_host.$postfix_admin_domain/public.key"
+
+while [ ! -f "$dkim_record_file" ]
+do
+  sleep 5
+done
+
+commandseparator
+
+log "waiting to dkim file to be populated"
+
+while [ ! -s "$dkim_record_file" ]
+do
+  sleep 5
+done
+sleep 5
+
+commandseparator
+
+cat "$dkim_record_file" > DKIM.record 
 commandseparator
 
 rm -rf PARAMETERS
