@@ -23,6 +23,17 @@ At the momment it just do not cover some few steps that I will be working on to 
 - cd mailserver-quicksetup
 - change PARAMETERS file accordingly
 
+```
+export digitalocean_token=51ed08c5ca1ccc69572c330ec035cf7e0c69c723dd563ca077b51d2cbf6ba066
+export digitalocen_droplet_tag=sandbox_machine
+export postfix_admin_domain=example.com
+export postfix_admin_email=admin
+export mail_server_host=mail
+export docker_compose_password=123456
+export staging_certs=false
+export private_key=key.pub
+```
+
 ### Installation (10min)
 
 - ./install
