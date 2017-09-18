@@ -12,6 +12,10 @@ services:
       - "143:143"     # IMAP       STARTTLS - Optional - For webmails/desktop clients
       - "587:587"     # Submission STARTTLS - Optional - For webmails/desktop clients
       - "993:993"     # IMAPS      SSL/TLS  - Optional - For webmails/desktop clients
+    # - "110:110"     # POP3       STARTTLS - Optional - For webmails/desktop clients
+    # - "465:465"     # SMTPS      SSL/TLS  - Optional - Enabled for compatibility reason, otherwise disabled
+    # - "995:995"     # POP3S      SSL/TLS  - Optional - For webmails/desktop clients
+    # - "4190:4190"   # SIEVE      STARTTLS - Optional - Recommended for mail filtering      
     environment:
       - DBPASS=${docker_compose_password}          # MariaDB database password (required)
       - RSPAMD_PASSWORD=${docker_compose_password}  # Rspamd WebUI password (required)
