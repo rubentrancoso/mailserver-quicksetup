@@ -21,7 +21,7 @@ After doing a first install you will see how easy it is.
 - cd mailserver-quicksetup
 - change PARAMETERS file accordingly
 
-### Installation
+### Installation (10min)
 
 - ./install
 - do a ssh on the remote host
