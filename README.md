@@ -6,7 +6,8 @@ What`s it?
 
 ```
 A script to automate all steps neded to install 
-https://github.com/hardware/mailserver (a simple and full-featured mail server using Docker) 
+https://github.com/hardware/mailserver 
+a simple and full-featured mail server using Docker 
 on a digitalocean droplet.
 ```
 After preparation it will perform all automated tasks in around 10 minutes.
