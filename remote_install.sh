@@ -99,6 +99,7 @@ docker-compose up -d
 commandseparator
 
 # certificates installation
+# --verbose 
 
 docker-compose stop nginx
 commandseparator
@@ -107,7 +108,6 @@ docker run -it --rm \
   -p 80:80 -p 443:443 \
   xataz/letsencrypt \
     certonly --standalone \
-    --verbose \
     --non-interactive \
     --staging \
     --rsa-key-size 4096 \
@@ -121,7 +121,7 @@ commandseparator
 
 # copiar o DKIM para o DNS
 
-cat "/mnt/docker/main/dkim/$mail_server_host.$postfix_admin_domain/plublic.key" > DKIM.record 
+cat "/mnt/docker/mail/dkim/$mail_server_host.$postfix_admin_domain/public.key" > DKIM.record 
 commandseparator
 
 rm -rf PARAMETERS
