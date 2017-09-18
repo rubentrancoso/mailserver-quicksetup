@@ -65,7 +65,5 @@ export private_key=key.pub
 - ADD_DOMAINS=aa.tld, www.bb.tld...   # Add additional domains separated by commas (needed for dkim keys etc.)
 ```
 
-4. Create a basic droplet with the suplied tag when the droplet tag was not found.
-
-5. Fix a version.
+4. Fix a version.
 
