@@ -123,21 +123,21 @@ commandseparator
 
 dkim_record_file="/mnt/docker/mail/dkim/$mail_server_host.$postfix_admin_domain/public.key"
 
+echo "waiting for dkim file to be populated"
 while [ ! -f "$dkim_record_file" ]
 do
-  sleep 5
+  sleep 3
+  echo "."
 done
-
 commandseparator
 
-log "waiting for dkim file to be populated"
-
+echo "waiting for dkim file to be populated"
 while [ ! -s "$dkim_record_file" ]
 do
-  sleep 5
+  echo "."
+  sleep 1
 done
-sleep 5
-
+cat "$dkim_record_file"
 commandseparator
 
 cat "$dkim_record_file" > DKIM.record 
