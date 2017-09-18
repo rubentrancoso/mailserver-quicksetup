@@ -1,6 +1,6 @@
 # Quick setup a mailserver in ~10 minutes
 ## [hardware/mailserver](https://github.com/hardware/mailserver) (github project) + DigitalOcean + CloudFlare
-### a simple and full-featured mail server using Docker
+### A simple and full-featured mail server using Docker
 
 What`s it?
 
