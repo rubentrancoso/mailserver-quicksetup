@@ -2,7 +2,7 @@
 
 A script to automate all steps neded to install https://github.com/hardware/mailserver on a digitalocean droplet
 
-After preparation it will perform all automated tasks in arroud 10 minutes
+After preparation it will perform all automated tasks in around 10 minutes
 
 At the momment it just not cover some few steps that I will be working with
 
