@@ -101,6 +101,13 @@ commandseparator
 # certificates installation
 # --verbose 
 
+certbot_staging_arg=
+
+if [ "$staging_certs" = "true" ];
+then
+   certbot_staging_arg="--staging"
+fi   
+
 docker-compose stop nginx
 commandseparator
 docker run -it --rm \
@@ -109,7 +116,7 @@ docker run -it --rm \
   xataz/letsencrypt \
     certonly --standalone \
     --non-interactive \
-    --staging \
+    "$certbot_staging_arg" \
     --rsa-key-size 4096 \
     --agree-tos \
     -m "$postfix_admin_email@$postfix_admin_domain" \
