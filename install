@@ -47,6 +47,23 @@ getvmidfromtag(){
    echo $result
 }
 
+getkeyidbyname() {
+   key_name=$1
+   result=`curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer $digitalocean_token" "https://api.digitalocean.com/v2/account/keys"`
+   result=`echo -e "$result" | jq '.ssh_keys[] | select(.name == "id_smtp.pub") | .id'`
+   echo $result
+
+}
+
+createdroplet(){
+   tag=$1
+   droplet_name=$2
+   sshkey_id=$3
+   result=`curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $digitalocean_token" -d '{"name":"'$droplet_name'","region":"nyc1","size":"512mb","image":"debian-9-x64","ssh_keys":['$sshkey_id'],"backups":false,"ipv6":false,"user_data":null,"private_networking":null,"volumes": null,"tags":["'$tag'"]}' "https://api.digitalocean.com/v2/droplets"`
+   result=`echo -e "$result" | jq '.droplet.id'`
+   echo $result
+}
+
 rebuildimage(){
    log "going to rebuild $1"
    vmid="$1"
@@ -145,17 +162,19 @@ vm_id=`getvmidfromtag "$digitalocen_droplet_tag"`
 # if vm was not found exit
 if [ -z "$vm_id" ];
 then
-   log "no vm found"
-   exit 1
+   log "no vm found. creating droplet..."
+   # create a droplet with the given tag
+   key_id=`getkeyidbyname "$private_key"`
+   vm_id=`createdroplet "$digitalocen_droplet_tag" "$mail_server_host.$postfix_admin_domain" "$key_id"`
 else
-   log "found vm $vm_id"
+   log "found vm $vm_id."
+
+   # give the machine the right name 
+   renamedroplet "$vm_id" "$mail_server_host.$postfix_admin_domain"
+
+   # 'format and reinstall' image to the vm
+   rebuildimage "$vm_id"   
 fi
-
-# give the machine the new name 
-renamedroplet "$vm_id" "$mail_server_host.$postfix_admin_domain"
-
-# 'format and reinstall' image to the vm
-rebuildimage "$vm_id"
 
 # wait machine to be rebuilt and be available
 # the problem here is that even if the machine is available
