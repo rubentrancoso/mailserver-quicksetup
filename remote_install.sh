@@ -19,10 +19,6 @@ commandseparator
 sudo apt-get -y install libterm-readline-gnu-perl
 commandseparator
 
-# install digitalonecan monitoring
-
-sudo curl -sSL https://agent.digitalocean.com/install.sh | sh
-
 # install docker
 
 sudo apt-get -y remove docker docker-engine docker.io
@@ -59,6 +55,11 @@ commandseparator
 sudo chmod +x /usr/local/bin/docker-compose
 commandseparator
 ln -s /usr/local/bin/docker-compose /bin/docker-compose
+commandseparator
+
+# install digitalonecan monitoring
+
+sudo curl -sSL https://agent.digitalocean.com/install.sh | sh
 commandseparator
 
 # get container image
@@ -161,3 +162,4 @@ rm -rf PARAMETERS
 
 # automate postfixadmin setup
 # https://mail.lindyhopcentral.com/setup.php
+# check that all files are present before estart
