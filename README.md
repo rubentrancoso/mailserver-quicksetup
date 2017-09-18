@@ -70,3 +70,5 @@ do a ssh on the remote host
 
 4. Fix a version.
 
+5. Is certificate renew already automated?
+
