@@ -17,6 +17,7 @@ At the momment it just do not cover some few steps that I will be working on to 
 ### Preparation
 
 - have a key pair in your ~/.ssh/ folder. e.g. id_smtp and id_smtp.pub
+- generate a token from your digitalocean account to be used on api access by the install script
 - git clone https://github.com/rubentrancoso/mailserver-quicksetup.git
 - cd mailserver-quicksetup
 - change [PARAMETERS](PARAMETERS) file accordingly
