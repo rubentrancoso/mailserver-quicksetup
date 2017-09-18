@@ -130,7 +130,7 @@ done
 
 commandseparator
 
-log "waiting to dkim file to be populated"
+log "waiting for dkim file to be populated"
 
 while [ ! -s "$dkim_record_file" ]
 do
