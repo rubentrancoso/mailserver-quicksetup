@@ -31,6 +31,7 @@ export mail_server_host=mail
 export docker_compose_password=123456
 export staging_certs=false
 export private_key=id_smtp.pub
+export additional_domains=aa.tld, www.bb.tld...
 ```
 
 ### Installation (10min)
@@ -63,12 +64,7 @@ do a ssh on the remote host
    
 2. Silently setup postfix admin with password suplied in [PARAMETERS](PARAMETERS) (currently you will need to follow a manual step to enter de generated token to the container).
 
-3. Accept aditional domains list in PARAMETERS file and open ADD_DOMAINS docker-compose.yml option:
-```
-- ADD_DOMAINS=aa.tld, www.bb.tld...   # Add additional domains separated by commas (needed for dkim keys etc.)
-```
+3. Fix a version.
 
-4. Fix a version.
-
-5. Is certificate renew already automated?
+4. Is certificate renew already automated?
 
