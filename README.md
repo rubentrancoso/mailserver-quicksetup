@@ -50,7 +50,7 @@ do a ssh on the remote host
 ```
 # ./remote_install.sh
 ```
-### Post-intallation (to be automated)
+### Post-installation (to be automated)
 
 - configure postfix admin
 
