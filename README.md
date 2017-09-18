@@ -3,11 +3,11 @@
 
 A script to automate all steps neded to install https://github.com/hardware/mailserver (a simple and full-featured mail server using Docker) on a digitalocean droplet
 
-After preparation it will perform all automated tasks in around 10 minutes
-
-At the momment it just do not cover some few steps that I will be working with
+After preparation it will perform all automated tasks in around 10 minutes.
 
 After doing a first install you will see how easy it is.
+
+At the momment it just do not cover some few steps that I will be working on to be solved.
 
 ## How to use it
 
