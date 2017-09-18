@@ -24,8 +24,7 @@ After doing a first install you will see how easy it is.
 
 ## Missing steps
 
-1. xataz/docker-letsencrypt image needs to be changed so the certificate creation will not prompt for user input
-2. automatically setup cloudflare records
+1. automatically setup cloudflare records
 
    - A mail ip address
    - MX domain.tld main.domain.tld
@@ -33,4 +32,4 @@ After doing a first install you will see how easy it is.
    - TXT v=spf1...
    - TXT mail_domainkey v=DKIM...
    
-3. silently setup postfix admin with password suplied in [PARAMETERS](PARAMETERS) (currently you will need to follow a manual step do enter de generated token to the container)
+2. silently setup postfix admin with password suplied in [PARAMETERS](PARAMETERS) (currently you will need to follow a manual step do enter de generated token to the container)
