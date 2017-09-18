@@ -6,4 +6,5 @@ export mail_server_host=mail
 export docker_compose_password=xxxxxxx
 export staging_certs=true
 export private_key=id_smtp.pub
+export additional_domains=aa.tld, www.bb.tld...
 
