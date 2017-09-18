@@ -1,7 +1,7 @@
 # Quick setup a mailserver in ~10 minutes
 ## [hardware/mailserver](https://github.com/hardware/mailserver) + DigitalOcean + CloudFlare
 
-A script to automate all steps neded to install https://github.com/hardware/mailserver (a simple and full-featured mail server using Docker) on a digitalocean droplet
+A script to automate all steps neded to install https://github.com/hardware/mailserver (a simple and full-featured mail server using Docker) on a digitalocean droplet.
 
 After preparation it will perform all automated tasks in around 10 minutes.
 
@@ -37,7 +37,7 @@ At the momment it just do not cover some few steps that I will be working on to 
 
 ## Missing steps
 
-1. automatically setup cloudflare records
+1. Automatically setup cloudflare records.
 
    - A mail ip address
    - MX domain.tld main.domain.tld
@@ -45,14 +45,14 @@ At the momment it just do not cover some few steps that I will be working on to 
    - TXT v=spf1...
    - TXT mail_domainkey v=DKIM...
    
-2. silently setup postfix admin with password suplied in [PARAMETERS](PARAMETERS) (currently you will need to follow a manual step to enter de generated token to the container)
+2. Silently setup postfix admin with password suplied in [PARAMETERS](PARAMETERS) (currently you will need to follow a manual step to enter de generated token to the container).
 
-3. accept aditional domains list in PARAMETERS file and open ADD_DOMAINS docker-compose.yml option
+3. Accept aditional domains list in PARAMETERS file and open ADD_DOMAINS docker-compose.yml option:
 ```
 - ADD_DOMAINS=aa.tld, www.bb.tld...   # Add additional domains separated by commas (needed for dkim keys etc.)
 ```
 
-4. create a basic droplet with the suplied tag when the droplet tag was not found
+4. Create a basic droplet with the suplied tag when the droplet tag was not found.
 
-5. Fix a version
+5. Fix a version.
 
