@@ -47,9 +47,7 @@ After doing a first install you will see how easy it is.
    
 2. silently setup postfix admin with password suplied in [PARAMETERS](PARAMETERS) (currently you will need to follow a manual step to enter de generated token to the container)
 
-## TODO
-
-accept aditional domains list in PARAMETERS file and open ADD_DOMAINS docker-compose.yml option
+3. accept aditional domains list in PARAMETERS file and open ADD_DOMAINS docker-compose.yml option
 ```
 - ADD_DOMAINS=aa.tld, www.bb.tld...   # Add additional domains separated by commas (needed for dkim keys etc.)
 ```
