@@ -21,7 +21,7 @@ At the momment it just do not cover some few steps that I will be working on to 
 
 - git clone https://github.com/rubentrancoso/mailserver-quicksetup.git
 - cd mailserver-quicksetup
-- change PARAMETERS file accordingly
+- change [PARAMETERS](PARAMETERS) file accordingly
 
 ```
 export digitalocean_token=51ed08c5ca1ccc69572c330ec035cf7e0c69c723dd563ca077b51d2cbf6ba066
