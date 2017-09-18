@@ -32,11 +32,15 @@ export private_key=id_smtp.pub
 ```
 
 ### Installation (10min)
+```
+# ./install (will create a droplet if it do not exists or rebuild an existing one)
+```
 
-- ./install (will create a droplet if it do not exists or rebuild an existing one)
-- do a ssh on the remote host
-- ./remote_install.sh
+do a ssh on the remote host
 
+```
+# ./remote_install.sh
+```
 ### Post-intallation (to be automated)
 
 - configure postfix admin
