@@ -52,5 +52,5 @@ After doing a first install you will see how easy it is.
 - ADD_DOMAINS=aa.tld, www.bb.tld...   # Add additional domains separated by commas (needed for dkim keys etc.)
 ```
 
-4. create a basic droplet with the suplied tag when the droplet tag is not found
+4. create a basic droplet with the suplied tag when the droplet tag was not found
 
