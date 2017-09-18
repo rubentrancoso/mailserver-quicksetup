@@ -205,5 +205,8 @@ result=`ssh -i ~/.ssh/id_smtp root@$ip_address chmod +x /root/remote_install.sh`
 # copy PARAMETERS file to the remote host
 log "copying PARAMETERS file to remote host..."
 result=`scp -o "StrictHostKeyChecking no" -i ~/.ssh/id_smtp PARAMETERS root@$ip_address:~/PARAMETERS`
+# copy postfixadmin.conf file to the remote host
+log "copying postfixadmin.conf file to remote host..."
+result=`scp -o "StrictHostKeyChecking no" -i ~/.ssh/id_smtp postfixadmin.conf root@$ip_address:~/postfixadmin.conf`
 
 

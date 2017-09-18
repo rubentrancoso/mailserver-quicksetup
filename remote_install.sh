@@ -19,7 +19,11 @@ commandseparator
 sudo apt-get -y install libterm-readline-gnu-perl
 commandseparator
 
-# install docler
+# install digitalonecan monitoring
+
+sudo curl -sSL https://agent.digitalocean.com/install.sh | sh
+
+# install docker
 
 sudo apt-get -y remove docker docker-engine docker.io
 commandseparator
@@ -123,6 +127,9 @@ docker run -it --rm \
     -d "$mail_server_host.$postfix_admin_domain" 
 commandseparator
 
+# replace placeholders on postfixadmin.conf and place file on it`s right location
+envsubst < "postfixadmin.conf" > "/mnt/docker/nginx/sites-enabled/postfixadmin.conf"
+
 docker-compose up -d
 commandseparator
 
@@ -151,3 +158,6 @@ cat "$dkim_record_file" > DKIM.record
 commandseparator
 
 rm -rf PARAMETERS
+
+# automate postfixadmin setup
+# https://mail.lindyhopcentral.com/setup.php
