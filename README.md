@@ -83,3 +83,5 @@ do a ssh on the remote host
 6. Check why port 80 is not redirecting to ssl on postfixadmin
 
 7. check that all files are present before start
+
+8. add name to containers to be started on docker-compose.yml file
