@@ -1,6 +1,6 @@
 # Quick setup a mailserver in ~10 minutes
 ## [hardware/mailserver](https://github.com/hardware/mailserver) (github project) + DigitalOcean + CloudFlare
-### a simple and full-featured mail server using Docker
+### A simple and full-featured mail server using Docker
 
 What`s it?
 
@@ -17,6 +17,12 @@ After doing a first install you will see how easy it is.
 For this server template, Webmail and Authoritative DNS was removed.
 
 At the momment it just do not cover some few steps that I will be working on to be solved.
+
+### Status from current version
+
+September-18-2017
+- All the installation process is working, except that you need to manually finish postfixadmin setup by entering https://mail.domain.tld/setup.php.
+- Still not tested with port 25 opened since I'm using a randon droplet and the traffic for it is dennied by default policy on DO.
 
 ## How to use it
 
@@ -42,7 +48,7 @@ export additional_domains=aa.tld, www.bb.tld...
 
 ### Installation (10min)
 ```
-# ./install (will create a droplet if it do not exists or rebuild an existing one)
+# ./install (will create a droplet if it does not exists or rebuild an existing one)
 ```
 
 do a ssh on the remote host
@@ -50,7 +56,7 @@ do a ssh on the remote host
 ```
 # ./remote_install.sh
 ```
-### Post-intallation (to be automated)
+### Post-installation (to be automated)
 
 - configure postfix admin
 
@@ -58,7 +64,7 @@ do a ssh on the remote host
 
 - ask digitalocean to open port 25
 
-## Missing steps
+## Missing steps (and TODOs)
 
 1. Automatically setup cloudflare records (or at least give the records as text).
 
@@ -74,3 +80,10 @@ do a ssh on the remote host
 
 4. Is certificate renew already automated?
 
+5. Remove hard coded references of id_smtp from scripts
+
+6. Check why port 80 is not redirecting to ssl on postfixadmin
+
+7. check that all files are present before start
+
+8. add name to containers to be started on docker-compose.yml file
