@@ -47,7 +47,7 @@ export private_key=id_smtp.pub
 
 ## Missing steps
 
-1. Automatically setup cloudflare records.
+1. Automatically setup cloudflare records (or at least give the records as text).
 
    - A mail ip address
    - MX domain.tld main.domain.tld
