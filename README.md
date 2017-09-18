@@ -7,6 +7,8 @@ After preparation it will perform all automated tasks in around 10 minutes.
 
 After doing a first install you will see how easy it is.
 
+For this server template, Webmail and Authoritative DNS was removed.
+
 At the momment it just do not cover some few steps that I will be working on to be solved.
 
 ## How to use it
