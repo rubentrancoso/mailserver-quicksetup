@@ -160,6 +160,3 @@ commandseparator
 
 rm -rf PARAMETERS
 
-# automate postfixadmin setup
-# https://mail.lindyhopcentral.com/setup.php
-# check that all files are present before estart
