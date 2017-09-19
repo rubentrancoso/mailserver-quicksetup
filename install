@@ -211,3 +211,4 @@ result=`scp -o "StrictHostKeyChecking no" -i "~/.ssh/$private_key" postfixadmin.
 
 echo -e "\n"
 echo -e "you server ip address is: "$ip_address"\n"
+echo -e "fix/review your dns records before continue.\n"
