@@ -178,5 +178,5 @@ rm -rf PARAMETERS
 # populate cloudflare
 # print link to postfixadmin
 
-echo -e "open postfixadmin on http://$mail_server_host.$postfix_admin_domain/setup.php to finish installation"
+echo -e "open postfixadmin on https://$mail_server_host.$postfix_admin_domain/setup.php to finish installation"
 
