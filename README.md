@@ -42,7 +42,7 @@ export postfix_admin_email=admin
 export mail_server_host=mail
 export docker_compose_password=123456
 export staging_certs=false
-export private_key=id_smtp.pub
+export private_key=id_smtp
 export additional_domains=aa.tld, www.bb.tld...
 ```
 
