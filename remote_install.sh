@@ -1,4 +1,6 @@
-#!/bin/bash -x
+#!/bin/bash
+reset
+clear
 
 . PARAMETERS
 
@@ -138,20 +140,32 @@ commandseparator
 
 dkim_record_file="/mnt/docker/mail/dkim/$mail_server_host.$postfix_admin_domain/public.key"
 
-echo "waiting for dkim file to be populated"
+echo "waiting for dkim files to be created"
 while [ ! -f "$dkim_record_file" ]
 do
   sleep 3
-  echo "."
+  echo -n "."
 done
+echo -e "\n"
 commandseparator
 
-echo "waiting for dkim file to be populated"
+echo "waiting for dkim files to be populated"
 while [ ! -s "$dkim_record_file" ]
 do
-  echo "."
+  echo -n "."
   sleep 1
 done
+echo -e "\n"
+commandseparator
+
+# list all DKIM files
+echo "DKIM files installed"
+cd /mnt/docker/mail/dkim/
+for entry in *; do   echo "$entry"; done
+commandseparator
+cd -
+commandseparator
+
 cat "$dkim_record_file"
 commandseparator
 

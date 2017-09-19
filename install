@@ -1,6 +1,7 @@
-#!/bin/bash -x
+#!/bin/bash
 
-rm -rf install.log
+reset
+clear
 
 digitalocean_token="define in PARAMETERS"
 digitalocen_droplet_tag="define in PARAMETERS"
@@ -59,7 +60,7 @@ createdroplet(){
    tag=$1
    droplet_name=$2
    sshkey_id=$3
-   result=`curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $digitalocean_token" -d '{"name":"'$droplet_name'","region":"nyc1","size":"512mb","image":"debian-9-x64","ssh_keys":['$sshkey_id'],"backups":false,"ipv6":false,"user_data":null,"private_networking":null,"volumes": null,"tags":["'$tag'"]}' "https://api.digitalocean.com/v2/droplets"`
+   result=`curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $digitalocean_token" -d '{"name":"'$droplet_name'","region":"nyc1","size":"1gb","image":"debian-9-x64","ssh_keys":['$sshkey_id'],"backups":false,"ipv6":false,"user_data":null,"private_networking":null,"volumes": null,"tags":["'$tag'"]}' "https://api.digitalocean.com/v2/droplets"`
    result=`echo -e "$result" | jq '.droplet.id'`
    echo $result
 }
