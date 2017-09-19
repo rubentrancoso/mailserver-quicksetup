@@ -172,9 +172,11 @@ commandseparator
 cat "$dkim_record_file" > DKIM.record 
 commandseparator
 
+rm -rf PARAMETERS
+
 # make digitalocean & cloudflare optional
 # populate cloudflare
 # print link to postfixadmin
 
-rm -rf PARAMETERS
+echo -e "open postfixadmin on http://$mail_server_host.$postfix_admin_domain/setup.php to finish installation"
 
