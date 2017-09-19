@@ -172,5 +172,9 @@ commandseparator
 cat "$dkim_record_file" > DKIM.record 
 commandseparator
 
+# make digitalocean & cloudflare optional
+# populate cloudflare
+# print link to postfixadmin
+
 rm -rf PARAMETERS
 
