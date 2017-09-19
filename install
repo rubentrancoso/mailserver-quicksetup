@@ -50,7 +50,7 @@ getvmidfromtag(){
 getkeyidbyname() {
    key_name=$1
    result=`curl -X GET -H "Content-Type: application/json" -H "Authorization: Bearer $digitalocean_token" "https://api.digitalocean.com/v2/account/keys"`
-   result=`echo -e "$result" | jq '.ssh_keys[] | select(.name == "id_smtp.pub") | .id'`
+   result=`echo -e "$result" | jq '.ssh_keys[] | select(.name == "'$key_name.pub'") | .id'`
    echo $result
 
 }
@@ -145,7 +145,7 @@ removemachinefromknownhosts(){
 
 fixssh(){
    eval "$(ssh-agent)"
-   ssh-add -K ~/.ssh/id_smtp
+   ssh-add -K "~/.ssh/$private_key"
 }
 
 #####################################
@@ -168,7 +168,6 @@ then
    vm_id=`createdroplet "$digitalocen_droplet_tag" "$mail_server_host.$postfix_admin_domain" "$key_id"`
 else
    log "found vm $vm_id."
-
    # give the machine the right name 
    renamedroplet "$vm_id" "$mail_server_host.$postfix_admin_domain"
 
@@ -196,17 +195,17 @@ waitforssh "$ip_address"
 
 # the docker-compose file
 log "copying docker-compose to remote host..."
-result=`scp -o "StrictHostKeyChecking no" -i ~/.ssh/id_smtp docker-compose.yml root@$ip_address:~/docker-compose.yml.tpl`
+result=`scp -o "StrictHostKeyChecking no" -i "~/.ssh/$private_key" docker-compose.yml root@$ip_address:~/docker-compose.yml.tpl`
 # copy the installation script
 log "copying remote_install.sh to remote host..."
-result=`scp -o "StrictHostKeyChecking no" -i ~/.ssh/id_smtp remote_install.sh root@$ip_address:~/remote_install.sh`
+result=`scp -o "StrictHostKeyChecking no" -i "~/.ssh/$private_key" remote_install.sh root@$ip_address:~/remote_install.sh`
 # make the installation script runnable
-result=`ssh -i ~/.ssh/id_smtp root@$ip_address chmod +x /root/remote_install.sh`
+result=`ssh -i "~/.ssh/$private_key" root@$ip_address chmod +x /root/remote_install.sh`
 # copy PARAMETERS file to the remote host
 log "copying PARAMETERS file to remote host..."
-result=`scp -o "StrictHostKeyChecking no" -i ~/.ssh/id_smtp PARAMETERS root@$ip_address:~/PARAMETERS`
+result=`scp -o "StrictHostKeyChecking no" -i "~/.ssh/$private_key" PARAMETERS root@$ip_address:~/PARAMETERS`
 # copy postfixadmin.conf file to the remote host
 log "copying postfixadmin.conf file to remote host..."
-result=`scp -o "StrictHostKeyChecking no" -i ~/.ssh/id_smtp postfixadmin.conf root@$ip_address:~/postfixadmin.conf`
+result=`scp -o "StrictHostKeyChecking no" -i "~/.ssh/$private_key" postfixadmin.conf root@$ip_address:~/postfixadmin.conf`
 
 
