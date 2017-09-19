@@ -209,4 +209,5 @@ result=`scp -o "StrictHostKeyChecking no" -i "~/.ssh/$private_key" PARAMETERS ro
 log "copying postfixadmin.conf file to remote host..."
 result=`scp -o "StrictHostKeyChecking no" -i "~/.ssh/$private_key" postfixadmin.conf root@$ip_address:~/postfixadmin.conf`
 
-
+echo -e "\n"
+echo -e "you server ip address is: "$ip_address"\n"
