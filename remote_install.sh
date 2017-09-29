@@ -10,6 +10,8 @@ commandseparator() {
 	echo -e "\n"
 }
 
+LATEST_COMPOSE_VERSION=$(curl https://github.com/docker/compose/releases/latest 2> /dev/null | sed 's#.*tag/##;s#">.*##' |  cut -dv -f2)
+
 # prepare
 
 sudo apt-get -y purge exim4*
@@ -52,7 +54,7 @@ commandseparator
 
 apt-get -y install curl
 commandseparator
-curl -L https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+curl -Ls https://github.com/docker/compose/releases/download/$LATEST_COMPOSE_VERSION/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 commandseparator
 sudo chmod +x /usr/local/bin/docker-compose
 commandseparator
