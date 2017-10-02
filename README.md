@@ -89,3 +89,5 @@ done.
 8. update ip address on cloudflare before 2nd stage
 
 9. generate keys automatically (optional)
+
+10. Test if it`s able to run DO and cloudflare at the beggining
