@@ -1,0 +1,5 @@
+
+update_dns_record() { 
+   echo -e "update dns record...(placeholder)"
+}
+

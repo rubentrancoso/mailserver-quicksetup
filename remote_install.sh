@@ -1,14 +1,25 @@
-#!/bin/bash
+#!/bin/bash -x
 reset
 clear
 
 . PARAMETERS
 . IP_ADDRESS
+. cloudflare_api
+
+log(){
+   echo -e "$1" >&2
+}
 
 commandseparator() {
 	echo -e "\n"
 	echo -e "---\n"
 	echo -e "\n"
+}
+
+getresty(){
+   log "getting resty..."
+   curl -sL https://raw.githubusercontent.com/micha/resty/master/resty > resty
+   . resty
 }
 
 # prepare
@@ -20,6 +31,13 @@ commandseparator
 sudo apt-get -y install git-core
 commandseparator
 sudo apt-get -y install libterm-readline-gnu-perl
+commandseparator
+
+# install curl
+
+apt-get -y install curl
+commandseparator
+getresty
 commandseparator
 
 # install docker
@@ -51,8 +69,6 @@ commandseparator
 
 # install docker-compose
 
-apt-get -y install curl
-commandseparator
 curl -L https://github.com/docker/compose/releases/download/1.14.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
 commandseparator
 sudo chmod +x /usr/local/bin/docker-compose
@@ -190,6 +206,8 @@ rm -rf PARAMETERS
 rm -rf response.html
 
 # populate cloudflare
+
+update_dns_record
 
 # make digitalocean & cloudflare optional
 

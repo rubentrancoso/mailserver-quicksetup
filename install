@@ -212,6 +212,9 @@ result=`scp -o "StrictHostKeyChecking no" -i "~/.ssh/$private_key" postfixadmin.
 # copy IP_ADDRESS to the remote host
 log "copying IP_ADDRESS to remote host..."
 result=`scp -o "StrictHostKeyChecking no" -i "~/.ssh/$private_key" IP_ADDRESS root@$ip_address:~/IP_ADDRESS`
+# copy cloudflare_api to the remote host
+log "copying cloudflare_api to remote host..."
+result=`scp -o "StrictHostKeyChecking no" -i "~/.ssh/$private_key" cloudflare_api root@$ip_address:~/cloudflare_api`
 
 rm -rf IP_ADDRESS
 rm -rf resty
