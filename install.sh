@@ -52,21 +52,21 @@ waitforssh "$ip_address"
 
 # the docker-compose file
 log "copying docker-compose to remote host..."
-result=`scp -o "StrictHostKeyChecking no" -i "~/.ssh/$private_key" docker-compose.yml root@$ip_address:~/docker-compose.yml.tpl`
+result=`scp -o "StrictHostKeyChecking no" -i "~/.ssh/$private_key" remote/docker-compose.yml root@$ip_address:~/docker-compose.yml.tpl`
+
+# copy postfixadmin.conf file to the remote host
+log "copying postfixadmin.conf file to remote host..."
+result=`scp -o "StrictHostKeyChecking no" -i "~/.ssh/$private_key" remote/postfixadmin.conf root@$ip_address:~/postfixadmin.conf`
 
 # copy the installation script
 log "copying remote_install.sh to remote host..."
-result=`scp -o "StrictHostKeyChecking no" -i "~/.ssh/$private_key" remote_install.sh root@$ip_address:~/remote_install.sh`
+result=`scp -o "StrictHostKeyChecking no" -i "~/.ssh/$private_key" remote/remote_install.sh root@$ip_address:~/remote_install.sh`
 # make the installation script runnable
 result=`ssh -i "~/.ssh/$private_key" root@$ip_address chmod +x /root/remote_install.sh`
 
 # copy PARAMETERS file to the remote host
 log "copying PARAMETERS file to remote host..."
 result=`scp -o "StrictHostKeyChecking no" -i "~/.ssh/$private_key" PARAMETERS root@$ip_address:~/PARAMETERS`
-
-# copy postfixadmin.conf file to the remote host
-log "copying postfixadmin.conf file to remote host..."
-result=`scp -o "StrictHostKeyChecking no" -i "~/.ssh/$private_key" postfixadmin.conf root@$ip_address:~/postfixadmin.conf`
 
 # copy IP_ADDRESS to the remote host
 log "copying IP_ADDRESS to remote host..."
