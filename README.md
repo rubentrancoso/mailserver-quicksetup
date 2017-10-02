@@ -49,6 +49,7 @@ export additional_domains=aa.tld, www.bb.tld...
 ```
 
 ### Installation (10min)
+first part runs from a mac and uses brew (should be changed to run from another platforms)
 ```
 # ./install (will create a droplet if it does not exists or rebuild an existing one)
 ```
