@@ -20,8 +20,8 @@ At the momment it just do not cover some few steps that I will be working on to 
 
 ### Status from current version
 
-September-18-2017
-- All the installation process is working, except that you need to manually finish postfixadmin setup by entering https://mail.domain.tld/setup.php.
+Octobeer-2-2017
+- All the installation process is working, except that you need to manually update DNS/DKIM records.
 - Still not tested with port 25 opened since I'm using a randon droplet and the traffic for it is dennied by default policy on DO.
 
 ## How to use it
@@ -56,9 +56,6 @@ do a ssh on the remote host
 ```
 # ./remote_install.sh
 ```
-### Post-installation (to be automated)
-
-- configure postfix admin
 
 ### Unable to be automated
 
