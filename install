@@ -215,13 +215,17 @@ result=`scp -o "StrictHostKeyChecking no" -i "~/.ssh/$private_key" IP_ADDRESS ro
 # copy cloudflare_api to the remote host
 log "copying cloudflare_api to remote host..."
 result=`scp -o "StrictHostKeyChecking no" -i "~/.ssh/$private_key" cloudflare_api root@$ip_address:~/cloudflare_api`
+log "preparing to run remote script on first login"
+ssh -i "~/.ssh/$private_key" root@$ip_address 'echo -e "~/remote_install.sh\nmv ~/remote_install.sh ~/remote_install.sh.done" >> ~/.bashrc'
 
 rm -rf IP_ADDRESS
 rm -rf resty
 
-echo -e "\n"
+echo -e "\n#########################################"
 echo -e "you server ip address is: "$ip_address"\n"
 echo -e "fix/review your dns records before continue.\n"
+
+read -n1 -r -p "Press any key to continue..." key
 
 echo -e "-----------------------"
 echo -e "entering remote host..."
