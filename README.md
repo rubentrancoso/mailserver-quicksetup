@@ -53,7 +53,8 @@ first part runs from a mac and uses brew (should be changed to run from another 
 ```
 # ./install (will create a droplet if it does not exists or rebuild an existing one)
 ```
-folow the next 2 prompts
+folow the next 2 prompts.
+
 done.
 
 ### Unable to be automated
