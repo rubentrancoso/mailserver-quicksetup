@@ -37,6 +37,8 @@ Octobeer-2-2017
 ```
 export digitalocean_token=51ed08c5ca1ccc69572c330ec035cf7e0c69c723dd563ca077b51d2cbf6ba066
 export digitalocen_droplet_tag=sandbox_machine
+export cloudflare_token=ALxfPq8QMn37aRHPcsPUgNfTxU9sRrxVs58w12
+export cloudflare_email=youremail@domain.tld
 export postfix_admin_domain=example.com
 export postfix_admin_email=admin
 export mail_server_host=mail
@@ -47,14 +49,26 @@ export additional_domains=aa.tld, www.bb.tld...
 ```
 
 ### Installation (10min)
+first part runs from a mac and uses brew (should be changed to run from another platforms)
 ```
 # ./install (will create a droplet if it does not exists or rebuild an existing one)
 ```
 
-do a ssh on the remote host
+when the remote server become ready, run the last script
 
 ```
-# ./remote_install.sh
+-----------------------
+entering remote host...
+where you can run ./remote_install.sh
+Linux mail 4.9.0-3-amd64 #1 SMP Debian 4.9.30-2+deb9u2 (2017-06-26) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+root@mail:~# ./remote_install.sh
 ```
 
 ### Unable to be automated
@@ -80,3 +94,7 @@ do a ssh on the remote host
 5. Check why port 80 is not redirecting to ssl on postfixadmin
 
 6. check that all files are present before start
+
+7. run remote script after login
+
+8. update ip address on cloudflare before 2nd stage
