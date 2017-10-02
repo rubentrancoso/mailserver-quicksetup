@@ -71,7 +71,7 @@ do a ssh on the remote host
    - TXT v=spf1...
    - TXT mail_domainkey v=DKIM...
    
-2. Silently setup postfix admin with password suplied in [PARAMETERS](PARAMETERS) (currently you will need to follow a manual step to enter de generated token to the container).
+2. Enter de generated token to the container.
 
 3. Fix a version.
 
