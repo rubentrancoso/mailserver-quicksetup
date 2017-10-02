@@ -22,12 +22,24 @@ isjqinstalled(){
    fi
 }
 
+installcommand() {
+   OS=`uname` 
+   if [ "$OS" = "Linux" ]
+   then
+      sudo yum -y install $1
+   fi
+   if [ "$OS" = "Darwin" ]
+   then
+      brew install $1	
+   fi
+}
+
 installjq(){
    # 0 - sucess / 1 - error (not found)
    if [ $(isjqinstalled) = 1 ]
    then
       log "installing jq..."
-      brew install jq
+      installcommand jq
    fi
 }
 

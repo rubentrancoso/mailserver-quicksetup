@@ -22,23 +22,11 @@ cf_list_zones() {
    echo $result	
 }
 
-
-
 update_dns_record() { 
    echo -e "update dns record...(placeholder)"
 }
 
-isjqinstalled(){
-   log "verifying if jq is installed..."
-   if type jq >/dev/null 2>&1;
-   then
-      log "jq already installed."
-      echo 0
-   else
-      log "jq installation not found."
-      echo 1
-   fi
-}
+
 
 
 
