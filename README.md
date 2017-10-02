@@ -53,23 +53,8 @@ first part runs from a mac and uses brew (should be changed to run from another 
 ```
 # ./install (will create a droplet if it does not exists or rebuild an existing one)
 ```
-
-when the remote server become ready, run the last script
-
-```
------------------------
-entering remote host...
-where you can run ./remote_install.sh
-Linux mail 4.9.0-3-amd64 #1 SMP Debian 4.9.30-2+deb9u2 (2017-06-26) x86_64
-
-The programs included with the Debian GNU/Linux system are free software;
-the exact distribution terms for each program are described in the
-individual files in /usr/share/doc/*/copyright.
-
-Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
-permitted by applicable law.
-root@mail:~# ./remote_install.sh
-```
+folow the next 2 prompts
+done.
 
 ### Unable to be automated
 
