@@ -2,7 +2,7 @@
 ## [hardware/mailserver](https://github.com/hardware/mailserver) (github project) + DigitalOcean + CloudFlare
 ### A simple and full-featured mail server using Docker
 
-What`s it?
+What's it?
 
 ```
 A script to automate all steps neded to install 
@@ -88,4 +88,4 @@ done.
 
 8. generate keys automatically (optional)
 
-9. Test if it`s able to run DO and cloudflare at the beggining
+9. Test if it's able to run DO and cloudflare at the beggining
