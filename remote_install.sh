@@ -4,23 +4,9 @@ clear
 
 . PARAMETERS
 . IP_ADDRESS
-. cloudflare_api
-
-log(){
-   echo -e "$1" >&2
-}
-
-commandseparator() {
-	echo -e "\n"
-	echo -e "---\n"
-	echo -e "\n"
-}
-
-getresty(){
-   log "getting resty..."
-   curl -sL https://raw.githubusercontent.com/micha/resty/master/resty > resty
-   . resty
-}
+. libs/common.sh
+. libs/digitalocean_api.sh
+. libs/cloudflare_api.sh
 
 # prepare
 
