@@ -94,3 +94,7 @@ root@mail:~# ./remote_install.sh
 5. Check why port 80 is not redirecting to ssl on postfixadmin
 
 6. check that all files are present before start
+
+7. run remote script after login
+
+8. update ip address on cloudflare before 2nd stage
