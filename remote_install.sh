@@ -172,11 +172,28 @@ commandseparator
 cat "$dkim_record_file" > DKIM.record 
 commandseparator
 
+curl --insecure -X POST --data "form=setuppw&setup_password=$docker_compose_password&setup_password2=$docker_compose_password&submit=Generate+password+hash" "https://$mail_server_host.$postfix_admin_domain/setup.php" > response.html
+postfix_token=`cat response.html | sed -rn "s/.*\['setup_password'\] = '(.*)';<\/pre><\/div>/\1/p"`
+commandseparator
+
+echo -e "your token is: $postfix_token"
+echo -e "copy it to the prompt..."
+
+docker exec -ti postfixadmin setup
+
+curl --insecure -X POST --data "form=createadmin&setup_password=$docker_compose_password&username=$postfix_admin_email@$postfix_admin_domain&password=$docker_compose_password&password2=$docker_compose_password&submit=Add+Admin" "https://$mail_server_host.$postfix_admin_domain/setup.php" > response.html
+cat response.html | sed -rn 's/.*(The admin .*@.* has been added)\!.*/\1/p'
+commandseparator
+
 rm -rf PARAMETERS
 
 # make digitalocean & cloudflare optional
 # populate cloudflare
 # print link to postfixadmin
 
-echo -e "open postfixadmin at https://$mail_server_host.$postfix_admin_domain/setup.php to finish installation"
+echo -e "open postfixadmin at https://$mail_server_host.$postfix_admin_domain to finish installation"
+echo -e "login with $postfix_admin_email@$postfix_admin_domain/$docker_compose_password"
+
+
+
 
