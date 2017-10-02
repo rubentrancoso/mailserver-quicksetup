@@ -186,6 +186,7 @@ cat response.html | sed -rn 's/.*(The admin .*@.* has been added)\!.*/\1/p'
 commandseparator
 
 rm -rf PARAMETERS
+rm -rf response.html
 
 # make digitalocean & cloudflare optional
 # populate cloudflare
