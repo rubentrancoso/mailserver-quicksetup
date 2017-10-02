@@ -29,8 +29,9 @@ Octobeer-2-2017
 ### Preparation
 
 - have a key pair in your ~/.ssh/ folder. e.g. id_smtp and id_smtp.pub
+- have a cloudflare zone for the domain that will be used for this email server (optional)
 - generate a token from your digitalocean account to be used on api access by the install script
-- get cloudflare token from your cloudflare account to be used on api access by the install script
+- get cloudflare token from your cloudflare account to be used on api access by the install script (optional)
 - git clone https://github.com/rubentrancoso/mailserver-quicksetup.git
 - cd mailserver-quicksetup
 - change [PARAMETERS](PARAMETERS) file accordingly
@@ -38,6 +39,7 @@ Octobeer-2-2017
 ```
 export digitalocean_token=51ed08c5ca1ccc69572c330ec035cf7e0c69c723dd563ca077b51d2cbf6ba066
 export digitalocen_droplet_tag=sandbox_machine
+export cloudflare_enabled=true
 export cloudflare_token=ALxfPq8QMn37aRHPcsPUgNfTxU9sRrxVs58w12
 export cloudflare_email=youremail@domain.tld
 export postfix_admin_domain=example.com
@@ -85,3 +87,5 @@ done.
 7. run remote script after login
 
 8. update ip address on cloudflare before 2nd stage
+
+9. generate keys automatically (optional)
