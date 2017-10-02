@@ -37,6 +37,8 @@ Octobeer-2-2017
 ```
 export digitalocean_token=51ed08c5ca1ccc69572c330ec035cf7e0c69c723dd563ca077b51d2cbf6ba066
 export digitalocen_droplet_tag=sandbox_machine
+export cloudflare_token=ALxfPq8QMn37aRHPcsPUgNfTxU9sRrxVs58w12
+export cloudflare_email=youremail@domain.tld
 export postfix_admin_domain=example.com
 export postfix_admin_email=admin
 export mail_server_host=mail
