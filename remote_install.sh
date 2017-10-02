@@ -3,6 +3,7 @@ reset
 clear
 
 . PARAMETERS
+. IP_ADDRESS
 
 commandseparator() {
 	echo -e "\n"
@@ -188,9 +189,9 @@ commandseparator
 rm -rf PARAMETERS
 rm -rf response.html
 
-# make digitalocean & cloudflare optional
 # populate cloudflare
-# print link to postfixadmin
+
+# make digitalocean & cloudflare optional
 
 echo -e "open postfixadmin at https://$mail_server_host.$postfix_admin_domain to finish installation"
 echo -e "login with $postfix_admin_email@$postfix_admin_domain/$docker_compose_password"

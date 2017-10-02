@@ -184,6 +184,7 @@ waitmachinetobeready "$vm_id"
 
 # ask for the ip address so we can access the machine using ssh
 ip_address=`getvmipaddressfromid "$vm_id"`
+echo "export server_ip=$ip_address" > IP_ADDRESS
 
 # delete the machine from knowhosts so we can add the new finger print for the newly 
 # created vm
@@ -208,7 +209,19 @@ result=`scp -o "StrictHostKeyChecking no" -i "~/.ssh/$private_key" PARAMETERS ro
 # copy postfixadmin.conf file to the remote host
 log "copying postfixadmin.conf file to remote host..."
 result=`scp -o "StrictHostKeyChecking no" -i "~/.ssh/$private_key" postfixadmin.conf root@$ip_address:~/postfixadmin.conf`
+# copy IP_ADDRESS to the remote host
+log "copying IP_ADDRESS to remote host..."
+result=`scp -o "StrictHostKeyChecking no" -i "~/.ssh/$private_key" IP_ADDRESS root@$ip_address:~/IP_ADDRESS`
+
+rm -rf IP_ADDRESS
+rm -rf resty
 
 echo -e "\n"
 echo -e "you server ip address is: "$ip_address"\n"
 echo -e "fix/review your dns records before continue.\n"
+
+echo -e "-----------------------"
+echo -e "entering remote host..."
+echo -e "where you can run ./remote_install.sh"
+ssh -i "~/.ssh/$private_key" root@$ip_address
+
