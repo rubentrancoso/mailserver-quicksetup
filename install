@@ -1,5 +1,4 @@
 #!/bin/bash
-
 reset
 clear
 
@@ -7,6 +6,7 @@ digitalocean_token="define in PARAMETERS"
 digitalocen_droplet_tag="define in PARAMETERS"
 
 . PARAMETERS
+. cloudflare_api
 
 log(){
    echo -e "$1" >&2
@@ -222,10 +222,16 @@ rm -rf IP_ADDRESS
 rm -rf resty
 
 echo -e "\n#########################################"
-echo -e "you server ip address is: "$ip_address"\n"
-echo -e "fix/review your dns records before continue.\n"
 
-read -n1 -r -p "Press any key to continue..." key
+if [ "$cloudflare_enabled" = "true" ];
+then
+   echo -e "will update the ip address on cloudflare zone using cloudflare_api (reminder)"
+else
+   echo -e "you server ip address is: "$ip_address"\n"
+   echo -e "fix/review your dns records before continue.\n"
+fi
+
+read -n1 -r -p "Going to second stage. Press any key to continue..." key
 
 echo -e "-----------------------"
 echo -e "entering remote host..."

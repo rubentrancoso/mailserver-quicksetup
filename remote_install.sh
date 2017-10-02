@@ -207,7 +207,13 @@ rm -rf response.html
 
 # populate cloudflare
 
-update_dns_record
+if [ "$cloudflare_enabled" = "true" ];
+then
+   echo -e "will update the ip address on cloudflare zone using cloudflare_api (reminder)"
+   update_dns_record
+else
+   echo -e "will inform the records to update as text"
+fi
 
 # make digitalocean & cloudflare optional
 
