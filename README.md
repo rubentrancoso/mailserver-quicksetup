@@ -30,6 +30,7 @@ Octobeer-2-2017
 
 - have a key pair in your ~/.ssh/ folder. e.g. id_smtp and id_smtp.pub
 - generate a token from your digitalocean account to be used on api access by the install script
+- get cloudflare token from your cloudflare account to be used on api access by the install script
 - git clone https://github.com/rubentrancoso/mailserver-quicksetup.git
 - cd mailserver-quicksetup
 - change [PARAMETERS](PARAMETERS) file accordingly
