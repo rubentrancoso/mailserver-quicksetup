@@ -9,6 +9,10 @@ log(){
    echo -e "$1" >&2
 }
 
+pause() {
+   read -n1 -r -p "$1" key
+}
+
 # return true or false accorfing that jq is installed or not
 isjqinstalled(){
    log "verifying if jq is installed..."
@@ -26,7 +30,16 @@ installcommand() {
    OS=`uname` 
    if [ "$OS" = "Linux" ]
    then
-      sudo yum -y install $1
+   	  var=`which yum`
+   	  if [ -n "$var" ];
+   	  then
+   	     sudo yum -y install $1
+   	  fi
+   	  var=`which apt-get`
+   	  if [ -n "$var" ];
+   	  then
+   	     sudo apt-get -y install $1
+   	  fi
    fi
    if [ "$OS" = "Darwin" ]
    then

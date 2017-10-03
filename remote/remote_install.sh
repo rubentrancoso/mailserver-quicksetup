@@ -1,6 +1,4 @@
-#!/bin/bash
-reset
-clear
+#!/bin/bash -x
 
 . PARAMETERS
 . IP_ADDRESS
@@ -24,6 +22,10 @@ commandseparator
 apt-get -y install curl
 commandseparator
 getresty
+commandseparator
+
+# install jq
+installjq
 commandseparator
 
 # install docker
@@ -74,7 +76,7 @@ commandseparator
 
 # open ports
 
-echo -e "open ports"
+log "open ports"
 commandseparator
 
 sudo systemctl stop docker
@@ -143,28 +145,31 @@ commandseparator
 
 dkim_record_file="/mnt/docker/mail/dkim/$mail_server_host.$postfix_admin_domain/public.key"
 
-echo "waiting for dkim files to be created"
+log "waiting for dkim files to be created"
 while [ ! -f "$dkim_record_file" ]
 do
   sleep 3
   echo -n "."
 done
-echo -e "\n"
+log
 commandseparator
 
-echo "waiting for dkim files to be populated"
+log "waiting for dkim files to be populated"
 while [ ! -s "$dkim_record_file" ]
 do
   echo -n "."
   sleep 1
 done
-echo -e "\n"
+log
 commandseparator
 
 # list all DKIM files
-echo "DKIM files installed"
+log "DKIM files installed"
 cd /mnt/docker/mail/dkim/
-for entry in *; do   echo "$entry"; done
+for entry in *; 
+do   
+	echo "$entry" 
+done
 commandseparator
 cd -
 commandseparator
@@ -179,8 +184,8 @@ curl --insecure -X POST --data "form=setuppw&setup_password=$docker_compose_pass
 postfix_token=`cat response.html | sed -rn "s/.*\['setup_password'\] = '(.*)';<\/pre><\/div>/\1/p"`
 commandseparator
 
-echo -e "your token is: $postfix_token"
-echo -e "copy it to the prompt..."
+log "your token is: $postfix_token"
+log "copy it to the prompt..."
 
 docker exec -ti postfixadmin setup
 
@@ -195,16 +200,21 @@ rm -rf response.html
 
 if [ "$cloudflare_enabled" = "true" ];
 then
-   echo -e "will update the ip address on cloudflare zone using cloudflare_api (reminder)"
-   update_dns_record
+   log "will update the ip address on cloudflare zone using cloudflare_api (reminder)"
+   cf_update_record "$postfix_admin_domain" "A" "$mail_server_host.$postfix_admin_domain" "$server_ip"
+   cf_update_record "$postfix_admin_domain" "MX" "$postfix_admin_domain" "$mail_server_host.$postfix_admin_domain"
+   cf_update_record "$postfix_admin_domain" "TXT" "_dmarc" "v=DMARC1; p=reject; rua=mailto:postmaster@$postfix_admin_domain; ruf=mailto:$postfix_admin_email@$postfix_admin_domain; fo=0; adkim=s; aspf=s; pct=100; rf=afrf; sp=reject"
+   cf_update_record "$postfix_admin_domain" "TXT" "$postfix_admin_domain" "v=spf1 a mx -all"
+   cf_update_record "$postfix_admin_domain" "TXT" "$mail_server_host._domainkey" "v=DKIM1; k=rsa; p=123456"
 else
-   echo -e "will inform the records to update as text"
+   log "will inform the records to update as text"
 fi
 
 # make digitalocean & cloudflare optional
 
-echo -e "open postfixadmin at https://$mail_server_host.$postfix_admin_domain to finish installation"
-echo -e "login with $postfix_admin_email@$postfix_admin_domain/$docker_compose_password"
+log
+log "open postfixadmin at https://$mail_server_host.$postfix_admin_domain to finish installation"
+log "login with $postfix_admin_email@$postfix_admin_domain/$docker_compose_password"
 
 
 

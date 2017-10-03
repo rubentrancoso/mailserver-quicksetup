@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 reset
 clear
 
@@ -82,20 +82,22 @@ ssh -i "~/.ssh/$private_key" root@$ip_address 'echo -e "~/remote_install.sh\nmv 
 rm -rf IP_ADDRESS
 rm -rf resty
 
-echo -e "\n#########################################"
+log "-----------------------"
 
 if [ "$cloudflare_enabled" = "true" ];
 then
-   echo -e "will update the ip address on cloudflare zone using cloudflare_api (reminder)"
+   cf_update_record "$postfix_admin_domain" "A" "$mail_server_host.$postfix_admin_domain" "$ip_address"
 else
-   echo -e "you server ip address is: "$ip_address"\n"
-   echo -e "fix/review your dns records before continue.\n"
+   log "you server ip address is: "$ip_address"\n"
+   log "fix/review your dns records before continue.\n"
+   log "set and A record with value $mail_server_host poinintg to $ip_address.\n"
+   pause "Going to second stage. Press any key to continue..."
 fi
 
-read -n1 -r -p "Going to second stage. Press any key to continue..." key
-
-echo -e "-----------------------"
-echo -e "entering remote host..."
-echo -e "where you can run ./remote_install.sh"
+log "-----------------------"
+log "-----------------------"
+log "entering remote host..."
+log "-----------------------"
+log "-----------------------"
 ssh -i "~/.ssh/$private_key" root@$ip_address
 
