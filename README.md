@@ -84,8 +84,4 @@ done.
 
 6. check that all files are present before start
 
-7. update ip address on cloudflare before 2nd stage
-
-8. generate keys automatically (optional)
-
-9. Test if it's able to run DO and cloudflare at the beggining
+7. generate keys automatically (optional)
