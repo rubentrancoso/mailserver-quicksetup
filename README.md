@@ -16,13 +16,10 @@ After doing a first install you will see how easy it is.
 
 For this server template, Webmail and Authoritative DNS was removed.
 
-At the momment it just do not cover some few steps that I will be working on to be solved.
-
 ### Status from current version
 
-Octobeer-2-2017
-- All the installation process is working, except that you need to manually update DNS/DKIM records.
-- Still not tested with port 25 opened since I'm using a randon droplet and the traffic for it is dennied by default policy on DO.
+October-3-2017
+- All the installation process is working and the final server was tested.
 
 ## How to use it
 
