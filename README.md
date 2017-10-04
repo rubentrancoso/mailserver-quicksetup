@@ -66,22 +66,10 @@ done.
 
 ## Missing steps (and TODOs)
 
-1. Automatically setup cloudflare records (or at least give the records as text).
+1. Enter de generated token to the container.
 
-   - A mail ip address
-   - MX domain.tld main.domain.tld
-   - TXT DMARC...
-   - TXT v=spf1...
-   - TXT mail_domainkey v=DKIM...
-   
-2. Enter de generated token to the container.
+2. Is certificate renew already automated?
 
-3. Fix a version.
+3. Check why port 80 is not redirecting to ssl on postfixadmin
 
-4. Is certificate renew already automated?
-
-5. Check why port 80 is not redirecting to ssl on postfixadmin
-
-6. check that all files are present before start
-
-7. generate keys automatically (optional)
+4. generate keys automatically (optional)
